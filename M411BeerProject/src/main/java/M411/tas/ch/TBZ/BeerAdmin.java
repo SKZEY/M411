@@ -6,11 +6,23 @@ import java.util.Map;
 
 import com.google.gson.JsonSyntaxException;
 
+/*
+ *  @author melvin 
+ * */
+/**
+ * The Class BeerAdmin.
+ */
 public class BeerAdmin implements BeerAdminInterface {
 
+	/** The url. */
 	String url = "http://api.brewerydb.com/v2/beers/?";
+	
+	/** The key. */
 	String key = "1511d0db4a1d6841481c672455358cff";
 
+	/* (non-Javadoc)
+	 * @see M411.tas.ch.TBZ.BeerAdminInterface#loadBeerStyles()
+	 */
 	public void loadBeerStyles() throws JsonSyntaxException, ClassNotFoundException, IOException {
 		Json json = new Json(url, key);
 		Object object = json.createJavaObjectFromJson(Result.class);
@@ -20,6 +32,9 @@ public class BeerAdmin implements BeerAdminInterface {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see M411.tas.ch.TBZ.BeerAdminInterface#printBeerStyles()
+	 */
 	public void printBeerStyles() throws JsonSyntaxException, ClassNotFoundException, IOException {
 		if (beerMap.size() == 0) {
 			loadBeerStyles();
@@ -29,6 +44,9 @@ public class BeerAdmin implements BeerAdminInterface {
 		});
 	}
 
+	/* (non-Javadoc)
+	 * @see M411.tas.ch.TBZ.BeerAdminInterface#printBeerStyles(java.lang.String)
+	 */
 	public void printBeerStyles(String search) throws JsonSyntaxException, ClassNotFoundException, IOException {
 		ArrayList<String> listOfKeys = new ArrayList<>();
 		if (beerMap.size() == 0) {
@@ -49,6 +67,9 @@ public class BeerAdmin implements BeerAdminInterface {
 
 	}
 
+	/* (non-Javadoc)
+	 * @see M411.tas.ch.TBZ.BeerAdminInterface#getBeerListForStyle(int)
+	 */
 	public void getBeerListForStyle(int idStyle) throws JsonSyntaxException, ClassNotFoundException, IOException {
 		Json json = new Json(url, key, idStyle);
 		Object object = json.createJavaObjectFromJson(Result.class);
@@ -59,6 +80,9 @@ public class BeerAdmin implements BeerAdminInterface {
 
 	}
 
+	/* (non-Javadoc)
+	 * @see M411.tas.ch.TBZ.BeerAdminInterface#printBeerList()
+	 */
 	public void printBeerList() throws JsonSyntaxException, ClassNotFoundException, IOException {
 		if (SpecialBeerMap.size() == 0) {
 			getBeerListForStyle(5);
@@ -70,6 +94,9 @@ public class BeerAdmin implements BeerAdminInterface {
 
 	}
 
+	/* (non-Javadoc)
+	 * @see M411.tas.ch.TBZ.BeerAdminInterface#printBeer(java.lang.String)
+	 */
 	public void printBeer(String id) throws JsonSyntaxException, ClassNotFoundException, IOException {
 		if (SpecialBeerMap.size() == 0) {
 			getBeerListForStyle(5);

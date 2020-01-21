@@ -5,7 +5,22 @@ import java.util.Scanner;
 
 import com.google.gson.JsonIOException;
 
+/*
+ *  @author melvin 
+ * */
+/**
+ * The Class App.
+ */
 public class App {
+	
+	/**
+	 * The main method.
+	 *
+	 * @param args the arguments
+	 * @throws Throwable the throwable
+	 * @throws JsonIOException the json IO exception
+	 * @throws FileNotFoundException the file not found exception
+	 */
 	public static void main(String[] args) throws Throwable, JsonIOException, FileNotFoundException {
 		int specialBierKey = 5;
 		String value = null;

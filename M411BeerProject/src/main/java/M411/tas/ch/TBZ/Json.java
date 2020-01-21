@@ -12,11 +12,24 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
 
+/*
+ *  @author melvin 
+ * */
+/**
+ * The Class Json.
+ */
 public class Json {
 
+	/** The url. */
 	String url;
+	
+	/** The key. */
 	String key;
+	
+	/** The style id. */
 	int styleId;
+	
+	/** The gson. */
 	Gson gson = new Gson();
 
 	/**
@@ -32,7 +45,8 @@ public class Json {
 	}
 
 	/**
-	 * Konstruktor für zwei Parameter (ohne styleId)
+	 * Konstruktor für zwei Parameter (ohne styleId).
+	 *
 	 * @param url Der erste Teil der API-URL
 	 * @param key Schlüssel für die API
 	 */
@@ -42,7 +56,8 @@ public class Json {
 	}
 
 	/**
-	 * Setzt die API-URL zusammen
+	 * Setzt die API-URL zusammen.
+	 *
 	 * @return URL für die API
 	 */
 	private String getAPI() {
@@ -55,9 +70,10 @@ public class Json {
 	}
 
 	/**
-	 * sendet eine Anfrage an die API und gibt (im Erfolgsfall) ein JSON-Dokument zurück 
+	 * sendet eine Anfrage an die API und gibt (im Erfolgsfall) ein JSON-Dokument zurück .
+	 *
 	 * @return JSON-Dokument (parse tree)
-	 * @throws IOException
+	 * @throws IOException Signals that an I/O exception has occurred.
 	 */
 	private JsonElement callJson() throws IOException {
 		URL url = null;
@@ -75,12 +91,13 @@ public class Json {
 	}
 
 	/**
-	 * wandelt ein JSON-Dokument in ein Objekt der Klasse Result um
+	 * wandelt ein JSON-Dokument in ein Objekt der Klasse Result um.
+	 *
 	 * @param cl Klasse
 	 * @return Result-Objekt
-	 * @throws JsonSyntaxException
-	 * @throws IOException
-	 * @throws ClassNotFoundException
+	 * @throws JsonSyntaxException the json syntax exception
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws ClassNotFoundException the class not found exception
 	 */
 	public Object createJavaObjectFromJson(Class<Result> cl) throws JsonSyntaxException, IOException, ClassNotFoundException {
 		Object result = gson.fromJson(callJson(), cl);
