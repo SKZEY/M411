@@ -19,17 +19,32 @@ public class Json {
 	int styleId;
 	Gson gson = new Gson();
 
+	/**
+	 * Konstruktor für drei Parameter (inkl. styleId)
+	 * @param url Der erste Teil der API-URL
+	 * @param key Schlüssel für die API
+	 * @param styleId Styleangaben
+	 */
 	public Json(String url, String key, int styleId) {
 		this.url = url;
 		this.key = key;
 		this.styleId = styleId;
 	}
 
+	/**
+	 * Konstruktor für zwei Parameter (ohne styleId)
+	 * @param url Der erste Teil der API-URL
+	 * @param key Schlüssel für die API
+	 */
 	public Json(String url, String key) {
 		this.url = url;
 		this.key = key;
 	}
 
+	/**
+	 * Setzt die API-URL zusammen
+	 * @return URL für die API
+	 */
 	private String getAPI() {
 		String api;
 		api = url + "key=" + key;
@@ -39,6 +54,11 @@ public class Json {
 		return api;
 	}
 
+	/**
+	 * sendet eine Anfrage an die API und gibt (im Erfolgsfall) ein JSON-Dokument zurück 
+	 * @return JSON-Dokument (parse tree)
+	 * @throws IOException
+	 */
 	private JsonElement callJson() throws IOException {
 		URL url = null;
 		JsonElement root = null;
@@ -54,8 +74,15 @@ public class Json {
 		return root;
 	}
 
-	// Result result = gson.fromJson(root, Result.class);
-	public Object createJavaObjectFromJson(Class cl) throws JsonSyntaxException, IOException, ClassNotFoundException {
+	/**
+	 * wandelt ein JSON-Dokument in ein Objekt der Klasse Result um
+	 * @param cl Klasse
+	 * @return Result-Objekt
+	 * @throws JsonSyntaxException
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 */
+	public Object createJavaObjectFromJson(Class<Result> cl) throws JsonSyntaxException, IOException, ClassNotFoundException {
 		Object result = gson.fromJson(callJson(), cl);
 		return result;
 	}
