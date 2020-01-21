@@ -10,11 +10,11 @@ public class Result {
 	@SerializedName("data")
 	@Expose
 	List<SpecialBeer> data = new ArrayList<SpecialBeer>();
-	
-	public List<SpecialBeer> getData(){
+
+	public List<SpecialBeer> getData() {
 		return data;
 	}
-	
+
 	public void setData(List<SpecialBeer> listofBeer) {
 		this.data = listofBeer;
 	}
